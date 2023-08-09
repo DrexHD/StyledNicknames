@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(PlayerManager.class)
 public class PlayerManagerMixin {
     @Inject(method = "onPlayerConnect", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/PlayerManager;sendCommandTree(Lnet/minecraft/server/network/ServerPlayerEntity;)V", shift = At.Shift.AFTER))
-    private void styledNicknames$loadNickname(ClientConnection connection, ServerPlayerEntity player, CallbackInfo ci) {
+    private void styledNicknames$loadNickname(ClientConnection connection, ServerPlayerEntity player, int latency, CallbackInfo ci) {
         NicknameHolder.of(player).styledNicknames$loadData();
     }
 }
